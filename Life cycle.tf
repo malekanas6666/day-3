@@ -37,7 +37,9 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket-config" {
     }
   }
 }
-
+/*Transition all files under /outgoing with tag "notDeepArchive" to infrequent access (i.e. Standard-IA) 30 consecutive days after creation time.
+ Transition all files under /outgoing to Archive access (i.e. Glacier) with tag "notDeepArchive" 90 consecutive days after creation time.
+*/
 resource "aws_s3_bucket_lifecycle_configuration" "tags-" {
   bucket = aws_s3_bucket.bucket-1.id
 
@@ -65,7 +67,9 @@ resource "aws_s3_bucket_lifecycle_configuration" "tags-" {
     }
   }
 }
-
+/* Transition all files under /incoming with size between 1MB to 1G to infrequent access (i.e. Standard-IA) 30 consecutive days after creation time.
+ Transition all files under /incoming with size between 1MB to 1G to Archive access (i.e. Glacier) 90 consecutive days after creation time.
+*/
 resource "aws_s3_bucket_lifecycle_configuration" "size-" {
   bucket = aws_s3_bucket.bucket-1.id
 
