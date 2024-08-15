@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "doc" {
     }
   }
 }
-
+#Use S3 to store Terraform statefile using "erakiterrafromstatefiles" bucket
 terraform {
   backend "s3" {
     bucket = "my-bucket-123-malek"  
